@@ -1,14 +1,13 @@
-**Wordle Game!** <br>
+**Wordle Game!**  
 Play Wordle in the terminal.
 ### Instructions
-**Step 1**<br>
-Clone the repo <br>
+**Step 1**  
+Clone the repo  
 `git clone https://github.com/zawan-ila/wordle.git`
 
-**Step 2**<br>
-Change directory into the cloned repo<br>
+**Step 2**  
+Change directory into the cloned repo  
 `cd wordle`
 
-**Step 3**<br>
-Run wordle!<br>
-`python3 wordle.py`
+**Step 3**  
+Run wordle using `python3 wordle.py`! You may use the `--hint-mode` flag to enable hints. To get a hint, simply type `hint` in the terminal window
