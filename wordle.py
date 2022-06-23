@@ -18,7 +18,7 @@ def get_random_word_details(filename):
     with open(filename, 'r') as f:
         word_infos = f.readlines()
 
-    return json.loads(random.choice(word_infos).strip())
+    return json.loads(random.choice(word_infos).strip()).values()
 
 
 def get_hint():
@@ -71,7 +71,8 @@ def take_guess():
     while invalidate(guess):
         cursor_up_line_clear(2 if bad_input else 1)
         bad_input = True
-        print(invalidate(guess) if invalidate(guess) != 'hint' else get_hint())
+        invalidate_msg = invalidate(guess)
+        print(invalidate_msg if invalidate_msg != 'hint' else get_hint())
         guess = input()
 
     cursor_up_line_clear(2 if bad_input else 1)
@@ -98,20 +99,17 @@ def play(word):
 
         if guess.lower() == word:
             print('WOW YOU WON')
-            return 1
+            return
     print("SORRY YOU LOST.")
 
 
 if __name__ == '__main__':
     print("Starting...")
-    CHOSEN_WORD_DETAILS = get_random_word_details("dictionary.txt")
+    word, synonyms, antonyms, definitions, examples = \
+        get_random_word_details("dictionary.jsonl")
 
     if len(sys.argv) > 1 and sys.argv[1] == "--hint-mode":
         HINT_MODE = True
-
-    # Note that order is important here
-    word, synonyms, antonyms, definitions, examples = \
-        CHOSEN_WORD_DETAILS.values()
 
     hints.append("Synonyms: " + ", ".join(synonyms))
     hints.append("Antonyms: " + ", ".join(antonyms))
